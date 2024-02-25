@@ -12,7 +12,7 @@
 #include "tx_assert.h"
 
 extern "C" {
-#include "cmsis_gcc.h"
+#include "cmsis_compiler.h"
 }
 
 

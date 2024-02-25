@@ -15,7 +15,7 @@
 #include <atomic>
 
 extern "C" {
-#include "cmsis_gcc.h"
+#include "cmsis_compiler.h"
 }
 
 
