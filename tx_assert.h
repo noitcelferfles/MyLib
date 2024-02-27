@@ -17,10 +17,10 @@
 
 #ifdef TX_NO_ASSERT
 	#define TX_ASSERT(expression)
- 	inline void tx_assert(size_t) {}
+ 	inline void tx_assert(size_t condition) {}
 #else
 	#define TX_ASSERT(expression)					tx_assert(expression)
-	void tx_assert(size_t);
+	void tx_assert(size_t condition);
 #endif
 
 
