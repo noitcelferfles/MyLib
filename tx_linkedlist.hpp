@@ -41,6 +41,11 @@ public:
 	void operator=(LinkedCycleUnsafe const & b) = delete;
 	void operator=(LinkedCycleUnsafe && b) = delete;
 
+	LinkedCycleUnsafe const & next(void) const {return *m_next;} // @this cannot be single
+	LinkedCycleUnsafe & next(void) {return *m_next;} // @this cannot be single
+	LinkedCycleUnsafe const & prev(void) const {return *m_prev;} // @this cannot be single
+	LinkedCycleUnsafe & prev(void) {return *m_prev;} // @this cannot be single
+
 	bool is_double(void) const {return m_next == m_prev;} // @this cannot be single
 
 	void remove_from_cycle(void)
@@ -48,6 +53,14 @@ public:
 	{
 		m_next->m_prev = m_prev;
 		m_prev->m_next = m_next;
+	}
+
+	void become_safe(void)
+	// Make @this a legal instance of LinkedCycle that is single
+	// @this must be single
+	{
+		m_next = this;
+		m_prev = this;
 	}
 
 	void insert_single_as_prev_of(LinkedCycle & anchor); // @this must be single
@@ -104,6 +117,15 @@ public:
 		m_prev = &anchor;
 		anchor.m_next->m_prev = this;
 		anchor.m_next = this;
+	}
+
+	void criss_cross_with(LinkedCycle & target)
+	// Criss cross the edge between @this and @this->m_next with the edge between @target and @target->m_prev
+	{
+		this->m_next->m_prev = target.m_prev;
+		target.m_prev->m_next = this->m_next;
+		this->m_next = &target;
+		target.m_prev = this;
 	}
 };
 
