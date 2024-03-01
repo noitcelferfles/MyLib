@@ -7,11 +7,7 @@
 
 #include "tx_assert.h"
 
-#ifdef TX_NO_ASSERT
-
-#else
-
-void tx_assert(size_t condition)
+void tx_api_assert(size_t condition)
 {
 	while (!condition)
 	{
@@ -19,7 +15,10 @@ void tx_assert(size_t condition)
 	}
 }
 
-void tx_api_assert(size_t condition)
+
+#ifndef TX_NO_ASSERT
+
+void tx_assert(size_t condition)
 {
 	while (!condition)
 	{

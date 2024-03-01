@@ -14,7 +14,6 @@
 
 #include <stddef.h>
 
-
 #ifdef TX_NO_ASSERT
 	#define TX_ASSERT(expression)	// For internal validation
  	inline void tx_assert(size_t condition) {}
@@ -23,8 +22,6 @@
 	void tx_assert(size_t condition);
 #endif
 
-void tx_api_assert(size_t condition);		// For validation of user input
-
 // Legacy
 #ifdef TX_NO_ASSERT
 	inline void TX_Assert(size_t condition) {}
@@ -32,6 +29,8 @@ void tx_api_assert(size_t condition);		// For validation of user input
 	void TX_Assert(size_t condition);
 #endif
 
+
+void tx_api_assert(size_t condition);		// For validation of user input
 
 
 #ifdef __cplusplus
