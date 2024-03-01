@@ -19,6 +19,14 @@ void tx_assert(size_t condition)
 	}
 }
 
+void tx_api_assert(size_t condition)
+{
+	while (!condition)
+	{
+		__asm volatile ("bkpt");
+	}
+}
+
 void TX_Assert(size_t condition)
 {
 	while (!condition)

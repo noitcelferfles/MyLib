@@ -16,13 +16,14 @@
 
 
 #ifdef TX_NO_ASSERT
-	#define TX_ASSERT(expression)
+	#define TX_ASSERT(expression)	// For internal validation
  	inline void tx_assert(size_t condition) {}
 #else
 	#define TX_ASSERT(expression)					tx_assert(expression)
 	void tx_assert(size_t condition);
 #endif
 
+void tx_api_assert(size_t condition);		// For validation of user input
 
 // Legacy
 #ifdef TX_NO_ASSERT
